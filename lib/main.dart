@@ -7,7 +7,7 @@ import '../utils/constants.dart';
 
 void main() {
   configure();
-  //WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'Quiz App',
