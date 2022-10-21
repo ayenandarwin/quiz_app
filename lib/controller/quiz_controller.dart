@@ -1,14 +1,14 @@
 import 'dart:convert';
-
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
-import 'package:successquiz/pages/result.dart';
 import '../models/quiz_category.dart';
 import 'package:http/http.dart' as http;
 
-class QuizController extends GetxController with SingleGetTickerProviderMixin {
+class QuizController extends GetxController {
   RxInt score = 0.obs;
   int points = 10;
+  RxList questions = [].obs;
+  RxBool loadingQuestions = true.obs;
 
   RxList categories = [
     QuizCategory(name: "C#", id: 1, difficulty: "Easy"),
@@ -23,19 +23,12 @@ class QuizController extends GetxController with SingleGetTickerProviderMixin {
     QuizCategory(name: "Python", id: 10, difficulty: "Medium"),
   ].obs;
 
-  RxList questions = [].obs;
-  RxBool loadingQuestions = true.obs;
-
- // double get totalScore=>cardItems.fold(0,)
-
   loadQuestions(QuizCategory category) async {
     questions.clear();
     score(0);
     loadingQuestions(true);
     http.Response res = await http.get(Uri.parse(
-        "https://opentdb.com/api.php?amount=15&category=18&difficulty=easy&type=multiple"
-        //"https://opentdb.com/api.php?amount=20&category=18&difficulty=medium&type=multiple"
-        ));
+        "https://opentdb.com/api.php?amount=15&category=18&difficulty=easy&type=multiple"));
 
     var json = jsonDecode(res.body);
     if (json["results"] != null) {

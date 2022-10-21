@@ -1,34 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:successquiz/di.dart';
 import 'package:successquiz/pages/home.dart';
 import '../utils/constants.dart';
 
-//import 'di.dart';
-
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+  configure();
+  //WidgetsFlutterBinding.ensureInitialized();
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
+    title: 'Quiz App',
     home: Flash(),
-    //routes: {'/': ((context) => Flash()), '/home': ((context) => HomePage())},
   ));
 }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//     );
-//   }
-// }
 
 class Flash extends StatefulWidget {
   const Flash({super.key});
@@ -42,7 +27,6 @@ class _FlashState extends State<Flash> {
   void initState() {
     Future.delayed(Duration(seconds: 3), () {
       Get.to(HomePage());
-      // Navigator.pushReplacementNamed(context, '/home');
     });
     super.initState();
   }
@@ -58,8 +42,8 @@ class _FlashState extends State<Flash> {
                   end: Alignment.centerRight)),
           child: Center(
               child: Image.asset(
-            "assets/choose.png",
-            scale: 4.5,
+            "assets/images/choose.png",
+            scale: 5,
           ))),
     );
   }

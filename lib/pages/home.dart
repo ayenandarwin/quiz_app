@@ -32,6 +32,9 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: purple1,
         centerTitle: true,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(gradient: kGradient),
+        ),
         title: Text("Quiz Category",
             style: TextStyle(
                 fontSize: 30,
@@ -49,9 +52,7 @@ class _HomePageState extends State<HomePage> {
                     height: 10,
                   ),
                   Obx(() {
-                    // var categories = Get.find<QuizController>().categories;
-                    var categories =
-                        Get.put<QuizController>(QuizController()).categories;
+                    var categories = Get.find<QuizController>().categories;
                     return Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: GridView.builder(

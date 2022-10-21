@@ -16,6 +16,7 @@ class QuizCategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
         Get.find<QuizController>().loadQuestions(category);
@@ -33,46 +34,48 @@ class QuizCategoryCard extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(4),
           child: Container(
-            child: Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(top: 25),
-                    height: 75,
-                    decoration: BoxDecoration(
-                      // color: Colors.black12,
-                      image: DecorationImage(
+            child: SingleChildScrollView(
+              child: Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 25),
+                      height: 60,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
                           image: AssetImage(
-                        "assets/" + image + ".png",
-                      )),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Container(
-                    width: double.infinity,
-                    height: 25,
-                    padding: EdgeInsets.only(left: 16, top: 4),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10)),
-                        color: Colors.black),
-                    child: Text(
-                      category.name!,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 16.0,
+                            "assets/images/" + image + ".png",
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      height: 25,
+                      padding: EdgeInsets.only(left: 16, top: 3),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10)),
+                          color: Colors.black),
+                      child: Text(
+                        category.name!,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

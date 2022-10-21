@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:successquiz/pages/result.dart';
 import 'package:successquiz/utils/constants.dart';
 import '../controller/quiz_controller.dart';
 
@@ -23,17 +22,9 @@ class _QuizPageState extends State<QuizPage> {
       backgroundColor: gray,
       body: Stack(
         children: [
-          Container(
-            decoration: const BoxDecoration(
-                // gradient: LinearGradient(colors: [p1, purpled]),
-                ),
-          ),
           SafeArea(
             child: Obx(() {
-              // if (Get.find<QuizController>().loadingQuestions.value)
-              if (Get.put<QuizController>(QuizController())
-                  .loadingQuestions
-                  .value) {
+              if (Get.find<QuizController>().loadingQuestions.value) {
                 return Center(child: CircularProgressIndicator());
               }
               var questions = Get.find<QuizController>().questions;
@@ -49,7 +40,6 @@ class _QuizPageState extends State<QuizPage> {
                       ...questions[index]["incorrect_answers"],
                     ];
                     randQuestions.shuffle();
-                    //print(randQuestions);
 
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,7 +55,6 @@ class _QuizPageState extends State<QuizPage> {
                                   style: TextStyle(
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.bold,
-                                    // color: Colors.white,
                                   ),
                                 ),
                                 Text(
@@ -82,8 +71,8 @@ class _QuizPageState extends State<QuizPage> {
                               height: 10,
                             ),
                             Divider(
-                              thickness: 1.5,
-                              color: blued,
+                              thickness: 1,
+                              color: Colors.black,
                             )
                           ],
                         ),
@@ -98,7 +87,6 @@ class _QuizPageState extends State<QuizPage> {
                             style: TextStyle(
                               fontSize: 24.0,
                               fontWeight: FontWeight.bold,
-                              // color: Colors.white,
                             ),
                           ),
                         ),
@@ -107,7 +95,7 @@ class _QuizPageState extends State<QuizPage> {
                           children: [
                             ...List.generate(
                               randQuestions.length,
-                              (index) => Row(
+                              (index2) => Row(
                                 children: [
                                   Expanded(
                                     child: Container(
@@ -115,7 +103,6 @@ class _QuizPageState extends State<QuizPage> {
                                           EdgeInsets.symmetric(vertical: 4),
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
-                                          primary: Colors.transparent,
                                           elevation: 0,
                                           backgroundColor: purple1,
                                           shape: RoundedRectangleBorder(
@@ -129,21 +116,77 @@ class _QuizPageState extends State<QuizPage> {
                                         onPressed: () {
                                           if (questions[index]
                                                   ["correct_answer"] ==
-                                              randQuestions[index]) {
-                                            setState(() {
-                                             var _score= Get.find<QuizController>()
-                                                      .score.value
-                                                       +=
-                                                  Get.find<QuizController>()
-                                                      .points;
-                                            });
+                                              randQuestions[index2]) {
+                                            Get.find<QuizController>()
+                                                    .score
+                                                    .value +=
+                                                Get.find<QuizController>()
+                                                    .points;
+                                            print(Get.find<QuizController>()
+                                                .score
+                                                .value);
                                           }
                                           var i = questionsPageController.page!
                                                   .round() +
                                               1;
                                           if (i >= questions.length) {
-                                            
-                                            Get.to(ScoreScreen());
+                                            showDialog(
+                                              context: context,
+                                              builder: (_) => AlertDialog(
+                                                title: Text(
+                                                  "Congratulations",
+                                                  style: TextStyle(
+                                                      fontSize: 30,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.w700),
+                                                ),
+                                                content: Text(
+                                                  "Your Score is :\t${Get.find<QuizController>().score.value}",
+                                                  style: TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                      Navigator.pop(context);
+                                                    },
+                                                    child: Text(
+                                                      "Cancel",
+                                                      style: TextStyle(
+                                                          fontSize: 16,
+                                                          color: purple1),
+                                                    ),
+                                                  ),
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      randQuestions.shuffle();
+                                                      Get.find<QuizController>()
+                                                          .score(0);
+                                                      questionsPageController
+                                                          .animateToPage(
+                                                        0,
+                                                        duration: Duration(
+                                                          milliseconds: 250,
+                                                        ),
+                                                        curve: Curves.bounceIn,
+                                                      );
+                                                      Navigator.pop(context);
+                                                    },
+                                                    child: Text(
+                                                      "Retry",
+                                                      style: TextStyle(
+                                                          fontSize: 16,
+                                                          color: purple1),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
                                           } else {
                                             questionsPageController
                                                 .animateToPage(
@@ -159,7 +202,7 @@ class _QuizPageState extends State<QuizPage> {
                                           padding: EdgeInsets.symmetric(
                                               vertical: 12),
                                           child: Text(
-                                            randQuestions[index],
+                                            randQuestions[index2],
                                             style: TextStyle(fontSize: 16),
                                           ),
                                         ),
@@ -186,9 +229,4 @@ class _QuizPageState extends State<QuizPage> {
       ),
     );
   }
-
-  // ElevatedButton buildElevatedButton() {
-  //   return ElevatedButton(onPressed: () {},
-  //    child: Text(_questionNumber<questions.length? 'Next':"Resuit"));
-  // }
 }
