@@ -12,10 +12,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   PageController questionsPageController = PageController();
-  bool isPress = false;
-  Color isTrue = Colors.green;
-  Color isFalse = Colors.red;
-  Color bgColor = Colors.pinkAccent;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

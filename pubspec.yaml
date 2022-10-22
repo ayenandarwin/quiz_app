@@ -18,7 +18,6 @@ dependencies:
   get: ^4.6.5
   http: ^0.13.5
   equatable: ^1.2.6
-  websafe_svg: ^2.1.2+4
 
 dev_dependencies:
   flutter_test:
