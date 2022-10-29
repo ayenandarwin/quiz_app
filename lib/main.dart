@@ -43,7 +43,7 @@ class _FlashState extends State<Flash> {
           child: Center(
               child: Image.asset(
             "assets/images/choose.png",
-            scale: 5,
+            scale: 6,
           ))),
     );
   }

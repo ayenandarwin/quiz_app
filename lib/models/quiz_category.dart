@@ -3,5 +3,5 @@ class QuizCategory {
   int? id;
   String? difficulty;
 
-  QuizCategory({this.name, this.id, this.difficulty});
+  QuizCategory({this.difficulty, this.name, this.id});
 }

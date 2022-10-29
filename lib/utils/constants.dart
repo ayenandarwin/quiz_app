@@ -11,4 +11,3 @@ const kGradient = LinearGradient(colors: [
   Color(0xffAf69Ef),
   Color(0xffDE7CEB),
 ], begin: Alignment.centerLeft, end: Alignment.centerRight);
-

@@ -31,51 +31,48 @@ class QuizCategoryCard extends StatelessWidget {
       },
       child: Padding(
         padding: const EdgeInsets.only(bottom: 4.0),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(4),
+        child: SingleChildScrollView(
           child: Container(
-            child: SingleChildScrollView(
-              child: Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 25),
-                      height: 60,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "assets/images/" + image + ".png",
-                          ),
+            child: Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 25),
+                    height: size.height * 0.07,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          "assets/images/" + image + ".png",
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 25,
-                      padding: EdgeInsets.only(left: 16, top: 3),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(10),
-                              bottomRight: Radius.circular(10)),
-                          color: Colors.black),
-                      child: Text(
-                        category.name!,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: 16.0,
-                        ),
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 25,
+                    padding: EdgeInsets.only(left: 16, top: 3),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10)),
+                        color: Colors.black),
+                    child: Text(
+                      category.name!,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 16.0,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

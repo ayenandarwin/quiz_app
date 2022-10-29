@@ -11,16 +11,16 @@ class QuizController extends GetxController {
   RxBool loadingQuestions = true.obs;
 
   RxList categories = [
-    QuizCategory(name: "C#", id: 1, difficulty: "Easy"),
-    QuizCategory(name: "Ruby", id: 2, difficulty: "Medium"),
-    QuizCategory(name: "Dart", id: 3, difficulty: "Easy"),
-    QuizCategory(name: "Flutter", id: 4, difficulty: "Medium"),
-    QuizCategory(name: "Java", id: 5, difficulty: "Easy"),
-    QuizCategory(name: "JavaScript", id: 6, difficulty: "Medium"),
-    QuizCategory(name: "Kotlin", id: 7, difficulty: "Easy"),
-    QuizCategory(name: "Nodejs", id: 8, difficulty: "Medium"),
-    QuizCategory(name: "PHP", id: 9, difficulty: "Easy"),
-    QuizCategory(name: "Python", id: 10, difficulty: "Medium"),
+    QuizCategory(name: "C#", id: 1),
+    QuizCategory(name: "Ruby", id: 2),
+    QuizCategory(name: "Dart", id: 3),
+    QuizCategory(name: "Flutter", id: 4),
+    QuizCategory(name: "Java", id: 5),
+    QuizCategory(name: "JavaScript", id: 6),
+    QuizCategory(name: "Kotlin", id: 7),
+    QuizCategory(name: "Nodejs", id: 8),
+    QuizCategory(name: "PHP", id: 9),
+    QuizCategory(name: "Python", id: 10),
   ].obs;
 
   loadQuestions(QuizCategory category) async {

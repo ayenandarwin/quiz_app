@@ -41,41 +41,36 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.white,
                 fontWeight: FontWeight.bold)),
       ),
-      body: Stack(
-        children: [
-          SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                //crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Obx(() {
-                    var categories = Get.find<QuizController>().categories;
-                    return Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 1.1,
-                            //mainAxisSpacing: 3,
-                            crossAxisSpacing: 4),
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: categories.length,
-                        itemBuilder: (_, index) => QuizCategoryCard(
-                          categories[index],
-                          image: quizImages[index % (quizImages.length)],
-                        ),
-                      ),
-                    );
-                  }),
-                ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10,
               ),
-            ),
+              Obx(() {
+                var categories = Get.find<QuizController>().categories;
+                return Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1.1,
+                        mainAxisSpacing: 4,
+                        crossAxisSpacing: 4),
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: categories.length,
+                    itemBuilder: (_, index) => QuizCategoryCard(
+                      categories[index],
+                      image: quizImages[index % (quizImages.length)],
+                    ),
+                  ),
+                );
+              }),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
